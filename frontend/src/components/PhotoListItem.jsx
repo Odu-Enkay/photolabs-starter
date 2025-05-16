@@ -7,6 +7,7 @@ const PhotoListItem = (props) => {
     <div>
       <img src={props.imageSource} alt="avatar_img" />
       <di>{props.id}</di>
+      <img src={props.profile} alt="avatar_img" />
       <div>{props.username}</div>
       <div>{props.city} {props.country}</div>
       

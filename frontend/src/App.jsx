@@ -32,8 +32,8 @@ const App = () => {
       imageSource={imageSource}
       username={username}
       city={city}
-      country={country}
-      
+      country={country} 
+      profile={profile}    
       />
     </div>
   );

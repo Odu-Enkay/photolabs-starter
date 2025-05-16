@@ -1,5 +1,6 @@
 import PhotoListItem from './components/PhotoListItem';
 import './App.scss';
+import PhotoFavButton from './components/PhotoFavButton';
 
 const sampleDataForPhotoListItem = {
   id: 1,
@@ -27,9 +28,6 @@ const App = () => {
   const imageSource = sampleDataForPhotoListItem.urls.regular;
   const {username, name, profile} = sampleDataForPhotoListItem.user; */
   
-  //const photos = new Array(3); // Create an array of length 3 (initially empty)
-
-  // Populate the 'photos' array with your data.  Crucially, do this *before* mapping.
   const photos = new Array(3).fill(sampleDataForPhotoListItem);
 
   return (
@@ -37,6 +35,7 @@ const App = () => {
       {photos.map((photo, index) => (
         <PhotoListItem key={index} photo={photo} />
       ))}
+      <PhotoFavButton />
     </div>
   );
 };

@@ -4,7 +4,7 @@ const PhotoListItem = (props) => {
   const { id, location, urls, user } = props.photo;
   return (
     <div className="photo-list__item">
-      key={id}
+      {/* <div>{id}</div> */}
       <img className="photo-list__image" src={urls.regular} alt="avatar_img" />
       <div className="photo-list__user-details"> 
       <img className="photo-list__user-profile" src={user.profile} alt="avatar_img" />

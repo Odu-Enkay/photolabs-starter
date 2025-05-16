@@ -26,13 +26,20 @@ const App = () => {
   const {city, country} = sampleDataForPhotoListItem.location;
   const imageSource = sampleDataForPhotoListItem.urls.regular;
   const {username, name, profile} = sampleDataForPhotoListItem.user; */
-  const photos = new Array(3);
+  
+  const photos = new Array(3); // Create an array of length 3 (initially empty)
+
+  // Populate the 'photos' array with your data.  Crucially, do this *before* mapping.
+  for (let i = 0; i < photos.length; i++) {
+    photos[i] = {...sampleDataForPhotoListItem, 
+      id: i + 1, // Set a unique ID (1, 2, 3)
+    };
+  }
   return (
     <div className="App">
-      <PhotoListItem
-    /*  photo={sampleDataForPhotoListItem}  */
-    {photos.map(photo)}
-      />
+      {photos.map((photo) => (
+        <PhotoListItem key={photo.id} photo={photo} />
+      ))}
     </div>
   );
 };

@@ -10,7 +10,6 @@ const HomeRoute = () => {
       <nav className="top-nav-bar">
       <TopNavigation />
       <TopicList />
-      <FavBadge />
       </nav>
       <PhotoList /> 
     </div>

@@ -7,10 +7,7 @@ import PhotoList from './PhotoList';
 const HomeRoute = () => {
   return (
     <div className='home-route'>
-      <nav className="top-nav-bar">
       <TopNavigation />
-      <TopicList />
-      </nav>
       <PhotoList /> 
     </div>
   )

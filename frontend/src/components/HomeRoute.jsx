@@ -1,15 +1,14 @@
-import '../styles/HomeRoute.scss'
-import TopNavigation from './TopNavigationBar';  
-import PhotoList from './PhotoList';  
-
+import TopNavigation from './TopNavigationBar';
+import PhotoList from './PhotoList';
+import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
   return (
-    <div className='home-route'>
+    <div className="home-route">
       <TopNavigation topics={props.topics}/>
-      <PhotoList photos={props.photos} /> 
+      <PhotoList photos={props.photos}/>
     </div>
-  )
-}
+  );
+};
 
 export default HomeRoute;

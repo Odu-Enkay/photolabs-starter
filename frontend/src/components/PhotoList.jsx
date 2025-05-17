@@ -1,7 +1,8 @@
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
+import photos from '../mocks/photos';
 
-const sampleDataForPhotoList = [
+/* const sampleDataForPhotoList = [
   {
     id: 1,
     location: {
@@ -50,12 +51,12 @@ const sampleDataForPhotoList = [
       profile: "/profile-1.jpg",
     },
   },
-];
+]; */
 
 const PhotoList = () => {
   return (
     <ul className="photo-list">
-      {sampleDataForPhotoList.map((photo) => (
+      {photos.map((photo) => (
         <PhotoListItem key={photo.id} photo={photo} />
       ))}
     </ul>

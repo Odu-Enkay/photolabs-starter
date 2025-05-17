@@ -1,10 +1,10 @@
 import PhotoListItem from './components/PhotoListItem';
-import './App.scss';
+import './App.scss';/* 
 import PhotoFavButton from './components/PhotoFavButton';
 import PhotoList from './components/PhotoList';
 import TopicList from './components/TopicList';
 import TopicListItem from './components/TopicListItem';
-import TopNavigation from './components/TopNavigationBar';
+import TopNavigation from './components/TopNavigationBar'; */
 import HomeRoute from './components/HomeRoute';
 
 

@@ -9,7 +9,6 @@ const TopNavigation = () => {
       <span className="top-nav-bar__logo">PhotoLabs</span>
       <TopicList />
       <FavBadge />
-
     </div>
     
   )

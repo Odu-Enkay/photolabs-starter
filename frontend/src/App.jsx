@@ -5,6 +5,7 @@ import PhotoList from './components/PhotoList';
 import TopicList from './components/TopicList';
 import TopicListItem from './components/TopicListItem';
 import TopNavigation from './components/TopNavigationBar';
+import HomeRoute from './components/HomeRoute';
 
 
 const App = () => {
@@ -16,12 +17,8 @@ const App = () => {
  /*  const photos = new Array(3).fill(sampleDataForPhotoListItem); */
 
   return (
-    <div className="App">
-      
-        <TopNavigation />      
-      <PhotoList />
-     
-  
+    <div className="App">   
+        <HomeRoute />      
   </div>
       )
 };

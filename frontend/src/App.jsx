@@ -17,11 +17,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <nav>
-        <TopNavigation />
-        <TopicList />
-       </nav>
-       
+      
+        <TopNavigation />      
       <PhotoList />
      
   

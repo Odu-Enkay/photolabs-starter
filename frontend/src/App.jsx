@@ -12,6 +12,9 @@ import photos from './mocks/photos';
 import topics from './mocks/topics';
 import { useState } from 'react';
 import FavBadge from './components/FavBadge';
+import FavIcon from './components/FavIcon';
+
+
 
 
 

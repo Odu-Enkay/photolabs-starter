@@ -6,6 +6,12 @@ import TopicList from './components/TopicList';
 import TopicListItem from './components/TopicListItem';
 import TopNavigation from './components/TopNavigationBar'; */
 import HomeRoute from './components/HomeRoute';
+/* import mockPhotoData from './mocks/photos';
+import mockTopicData from './mocks/topics'; */
+import photos from './mocks/photos';
+import topics from './mocks/topics';
+
+
 
 
 const App = () => {
@@ -18,7 +24,8 @@ const App = () => {
 
   return (
     <div className="App">   
-        <HomeRoute />      
+    <HomeRoute photos={photos} topics={topics} />
+        {/* <HomeRoute photos={mockPhotoData} topics={mockTopicData} />   */}   
   </div>
       )
 };

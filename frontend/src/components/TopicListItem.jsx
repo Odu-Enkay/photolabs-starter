@@ -1,24 +1,22 @@
 import "../styles/TopicListItem.scss";
 import TopicList from "./TopicList";
+import topics from "../mocks/topics";
 
-const sampleDataForTopicListItem = {
+
+/* const sampleDataForTopicListItem = {
   id: 1,
   slug: "topic-1",
   label: "Nature",
-};
+}; */
 
 const TopicListItem = (props) => {
-  const {title} = props.topic;
-  console.log(props.topic);
+  const { title } = props.topic; // Correctly destructuring 'title'
 
   return (
-    
     <div className="topic-list__item">
-      {/* Insert React */}
-      <span className="top-nav-bar__topic-list
-
-"> 
-        {title}</span>
+      <span className="top-nav-bar__topic-list-item">
+        {title}
+      </span>
     </div>
   );
 };

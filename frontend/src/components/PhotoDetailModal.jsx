@@ -1,27 +1,43 @@
 import React from 'react';
 import '../styles/PhotoDetailsModal.scss';
 
-const PhotoDetailModal = ({ photo, onClose }) => {
-  const { urls, user, location } = photo;
+const PhotoDetailModal = ({ singlePhotoDetail, onClose, photos }) => {
+  if(!singlePhotoDetail) {
+    return null;
+  }
+  const { urls, user, location } = singlePhotoDetail;
+
+  //console.log("Modal photo details:", singlePhotoDetail);
+  //console.log('user.profile:', singlePhotoDetail.user?.profile);
+
+  const similarPhotos = photos.filter(
+    (photo) =>
+      photo.id !== singlePhotoDetail.id &&
+      photo.location.city === location.city
+  );
 
   return (
     <div className="photo-details-modal">
       <div className="photo-details-modal__top-bar">
-        <button className="photo-details-modal__close-button" onClick={onClose}>
-          X
+        <button className="photo-details-modal__close-button" onClick={onClose}> X
         </button>
+
+        
+
       </div>
+
       <div className="photo-details-modal__images">
         <img
           className="photo-details-modal__image"
           src={urls.full}
-          alt={`Full view of ${user.username}'s photo`}
+          alt="Full size"
         />
-        <div className="photo-details-modal__photographer-details">
+      </div>
+      <div className="photo-details-modal__photographer-details">
           <img
             className="photo-details-modal__photographer-profile"
             src={user.profile}
-            alt={`${user.username}'s profile`}
+            alt={`Profile of ${user.username}`}
           />
           <div className="photo-details-modal__photographer-info">
             <div>{user.username}</div>
@@ -30,7 +46,22 @@ const PhotoDetailModal = ({ photo, onClose }) => {
             </div>
           </div>
         </div>
-      </div>
+
+      {similarPhotos.length > 0 && (
+        <>
+          <h2 className="photo-details-modal__header">Similar photos:</h2>
+          <div className="photo-details-modal__images">
+            {similarPhotos.map((photo) => (
+              <img
+                key={photo.id}
+                className="photo-details-modal__image"
+                src={photo.urls.regular}
+                alt={`Similar photo ${photo.id}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };

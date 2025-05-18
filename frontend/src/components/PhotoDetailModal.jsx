@@ -15,37 +15,41 @@ const PhotoDetailModal = ({
     return null;
   }
 
-  const { urls, user, location } = singlePhotoDetail;
+  const { id, urls, user, location } = singlePhotoDetail;
 
+  // Find similar photos based on location (excluding the selected photo)
   const similarPhotos = photos.filter(
     (photo) =>
-      photo.id !== singlePhotoDetail.id && photo.location.city === location.city
+      photo.id !== singlePhotoDetail.id &&
+      photo.location.city === location.city
   );
 
   return (
     <div className="photo-details-modal">
+      {/* Close button */}
       <div className="photo-details-modal__top-bar">
         <button className="photo-details-modal__close-button" onClick={onClose}>
           X
         </button>
       </div>
 
+      {/* Selected photo with FavButton */}
       <div className="photo-details-modal__images">
-  {/* Fav button on top of full-size image */}
-  <div className="photo-details-modal__image-container" style={{ position: "relative" }}>
-    <PhotoFavButton
-      photoId={singlePhotoDetail.id}
-      favourites={favourites}
-      toggleFavourite={toggleFavourite}
-    />
-    <img
-      className="photo-details-modal__image"
-      src={urls.full}
-      alt="Full size"
-    />
-  </div>
-</div>
+        <div className="photo-details-modal__image-container" style={{ position: "relative" }}>
+          <PhotoFavButton
+            photoId={id}
+            favourites={favourites}
+            toggleFavourite={toggleFavourite}
+          />
+          <img
+            className="photo-details-modal__image"
+            src={urls.full}
+            alt="Selected"
+          />
+        </div>
+      </div>
 
+      {/* Photographer details */}
       <div className="photo-details-modal__photographer-details">
         <img
           className="photo-details-modal__photographer-profile"
@@ -60,6 +64,7 @@ const PhotoDetailModal = ({
         </div>
       </div>
 
+      {/* Similar photos */}
       {similarPhotos.length > 0 && (
         <>
           <h2 className="photo-details-modal__header">Similar photos:</h2>

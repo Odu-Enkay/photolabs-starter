@@ -4,8 +4,8 @@ import { useState } from 'react';
 import FavBadge from './FavBadge';
 
 const PhotoFavButton = (props) => {
- /*  const [isActive, setActive] = useState(false);
- */
+  //const [isActive, setActive] = useState(false);
+
   function handleClick() {
     props.toggleFavourite(props.photoId);
     /* setActive(!isActive);

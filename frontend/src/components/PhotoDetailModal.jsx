@@ -1,15 +1,21 @@
 import React from "react";
 import "../styles/PhotoDetailsModal.scss";
 import PhotoList from "./PhotoList";
+import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoDetailModal = ({ singlePhotoDetail, onClose, photos }) => {
+const PhotoDetailModal = ({
+  singlePhotoDetail,
+  onClose,
+  photos,
+  toggleFavourite,
+  favourites,
+  onPhotoClick,
+}) => {
   if (!singlePhotoDetail) {
     return null;
   }
-  const { urls, user, location } = singlePhotoDetail;
 
-  //console.log("Modal photo details:", singlePhotoDetail);
-  //console.log('user.profile:', singlePhotoDetail.user?.profile);
+  const { urls, user, location } = singlePhotoDetail;
 
   const similarPhotos = photos.filter(
     (photo) =>
@@ -20,18 +26,26 @@ const PhotoDetailModal = ({ singlePhotoDetail, onClose, photos }) => {
     <div className="photo-details-modal">
       <div className="photo-details-modal__top-bar">
         <button className="photo-details-modal__close-button" onClick={onClose}>
-          {" "}
           X
         </button>
       </div>
 
       <div className="photo-details-modal__images">
-        <img
-          className="photo-details-modal__image"
-          src={urls.full}
-          alt="Full size"
-        />
-      </div>
+  {/* Fav button on top of full-size image */}
+  <div className="photo-details-modal__image-container" style={{ position: "relative" }}>
+    <PhotoFavButton
+      photoId={singlePhotoDetail.id}
+      favourites={favourites}
+      toggleFavourite={toggleFavourite}
+    />
+    <img
+      className="photo-details-modal__image"
+      src={urls.full}
+      alt="Full size"
+    />
+  </div>
+</div>
+
       <div className="photo-details-modal__photographer-details">
         <img
           className="photo-details-modal__photographer-profile"
@@ -52,9 +66,9 @@ const PhotoDetailModal = ({ singlePhotoDetail, onClose, photos }) => {
           <div className="photo-details-modal__images">
             <PhotoList
               photos={similarPhotos}
-              toggleFavourite={() => {}}
-              favourites={[]}
-              onPhotoClick={() => {}}
+              toggleFavourite={toggleFavourite}
+              favourites={favourites}
+              onPhotoClick={onPhotoClick}
             />
           </div>
         </>

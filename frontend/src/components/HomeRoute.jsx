@@ -4,28 +4,13 @@ import '../styles/HomeRoute.scss';
 import { useState } from 'react';
 import PhotoDetailModal from './PhotoDetailModal';
 
-const HomeRoute = (props) => {
-  const [favourites, setFavourites] = useState([]);
-
-  const toggleFavourite = (photoId) =>{
-    if(favourites.includes(photoId)){
-      console.log('favoutite removed!');
-      //remove photoID from the favourite
-      const currentFavourites = [...favourites].filter(id => id !== photoId)
-      setFavourites(currentFavourites)
-    }else{
-      const newFavourites = [...favourites, photoId]
-      setFavourites(newFavourites)
-      console.log("Favoutite Id added")
-      //setFavourites(prev=>([...prev, photoId]))
-    }
-  
-  }
+const HomeRoute = ({ photos, topics, favourites, toggleFavourite, onPhotoClick }) => {
+ 
 
   return (
     <div className="home-route">
-      <TopNavigation topics={props.topics} favourites={favourites}/>
-      <PhotoList photos={props.photos} toggleFavourite={toggleFavourite} favourites={favourites} onPhotoClick={props.onPhotoClick} />    
+      <TopNavigation topics={topics} favourites={favourites}/>
+      <PhotoList photos={photos} favourites={favourites} toggleFavourite={toggleFavourite}  onPhotoClick={onPhotoClick} />    
       
     </div>
   );

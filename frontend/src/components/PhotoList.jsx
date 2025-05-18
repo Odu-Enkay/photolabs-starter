@@ -1,5 +1,6 @@
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
+import PhotoDetailModal from "./PhotoDetailModal";
 
 /* const sampleDataForPhotoList = [
   {
@@ -56,8 +57,9 @@ const PhotoList = (props) => {
   return (
     <ul className="photo-list">
       {props.photos.map((photo) => (
-          <PhotoListItem key={photo.id} photo={photo} toggleFavourite={props.toggleFavourite} favourites={props.favourites} onPhotoClick={() => props.onPhotoClick(photo)}/>
+          <PhotoListItem key={photo.id} photo={photo} toggleFavourite={props.toggleFavourite} favourites={props.favourites} onPhotoClick={props.onPhotoClick} />    
       ))}
+     
     </ul>
   );
 };

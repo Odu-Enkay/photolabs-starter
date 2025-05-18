@@ -1,20 +1,26 @@
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 import { useState } from 'react';
+import FavBadge from './FavBadge';
 
-const PhotoFavButton = () => {
-  const [isActive, setActive] = useState(false);
-
+const PhotoFavButton = (props) => {
+ /*  const [isActive, setActive] = useState(false);
+ */
   function handleClick() {
-    setActive(!isActive);
-    console.log(`Favourite button clicked, isActive: ${!isActive}`);
-  };
+    props.toggleFavourite(props.photoId);
+    /* setActive(!isActive);
+    console.log(`Favourite button clicked, isActive: ${!isActive}`); */
+  }; 
 
+  function isActive() {
+    return props.favourites.includes(props.photoId)
+  }
+ 
   return (
     <div className="photo-list__fav-icon" onClick={handleClick}>
       <div className='photo-list__fav-icon-svg'>
-        <FavIcon className='photo-list__fav-icon' selected={isActive} 
-        style={{backgroundColor: isActive? 'red' : 'white'}} /> 
+        <FavIcon className='photo-list__fav-icon' selected={isActive()}
+      style={{backgroundColor: isActive()? 'red' : 'white'}} /> 
         </div>
       </div>
   );

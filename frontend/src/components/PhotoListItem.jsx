@@ -8,7 +8,7 @@ const PhotoListItem = (props) => {
   return (
     <div className="photo-list__item">
       {/* <div>{id}</div> */}
-      <PhotoFavButton />
+      <PhotoFavButton toggleFavourite={props.toggleFavourite} photoId={id} favourites={props.favourites}/>
       <img className="photo-list__image" src={urls.regular} alt={`Photo by ${user.username}`} />
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={user.profile} alt={`Profile of ${user.username}`} />

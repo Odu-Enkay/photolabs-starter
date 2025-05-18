@@ -1,8 +1,9 @@
-import React from 'react';
-import '../styles/PhotoDetailsModal.scss';
+import React from "react";
+import "../styles/PhotoDetailsModal.scss";
+import PhotoList from "./PhotoList";
 
 const PhotoDetailModal = ({ singlePhotoDetail, onClose, photos }) => {
-  if(!singlePhotoDetail) {
+  if (!singlePhotoDetail) {
     return null;
   }
   const { urls, user, location } = singlePhotoDetail;
@@ -12,18 +13,16 @@ const PhotoDetailModal = ({ singlePhotoDetail, onClose, photos }) => {
 
   const similarPhotos = photos.filter(
     (photo) =>
-      photo.id !== singlePhotoDetail.id &&
-      photo.location.city === location.city
+      photo.id !== singlePhotoDetail.id && photo.location.city === location.city
   );
 
   return (
     <div className="photo-details-modal">
       <div className="photo-details-modal__top-bar">
-        <button className="photo-details-modal__close-button" onClick={onClose}> X
+        <button className="photo-details-modal__close-button" onClick={onClose}>
+          {" "}
+          X
         </button>
-
-        
-
       </div>
 
       <div className="photo-details-modal__images">
@@ -34,31 +33,29 @@ const PhotoDetailModal = ({ singlePhotoDetail, onClose, photos }) => {
         />
       </div>
       <div className="photo-details-modal__photographer-details">
-          <img
-            className="photo-details-modal__photographer-profile"
-            src={user.profile}
-            alt={`Profile of ${user.username}`}
-          />
-          <div className="photo-details-modal__photographer-info">
-            <div>{user.username}</div>
-            <div className="photo-details-modal__photographer-location">
-              {location.city}, {location.country}
-            </div>
+        <img
+          className="photo-details-modal__photographer-profile"
+          src={user.profile}
+          alt={`Profile of ${user.username}`}
+        />
+        <div className="photo-details-modal__photographer-info">
+          <div>{user.username}</div>
+          <div className="photo-details-modal__photographer-location">
+            {location.city}, {location.country}
           </div>
         </div>
+      </div>
 
       {similarPhotos.length > 0 && (
         <>
           <h2 className="photo-details-modal__header">Similar photos:</h2>
           <div className="photo-details-modal__images">
-            {similarPhotos.map((photo) => (
-              <img
-                key={photo.id}
-                className="photo-details-modal__image"
-                src={photo.urls.regular}
-                alt={`Similar photo ${photo.id}`}
-              />
-            ))}
+            <PhotoList
+              photos={similarPhotos}
+              toggleFavourite={() => {}}
+              favourites={[]}
+              onPhotoClick={() => {}}
+            />
           </div>
         </>
       )}

@@ -1,26 +1,37 @@
-import { useState } from "react";
+import { useReducer } from "react";
 
-const useApplicationData = () => {
-  const [favourites, setFavourites] = useState([]);
-  const [singlePhotoDetail, setSinglePhotoDetail] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export const ACTIONS = {
+  TOGGLE_FAV_PHOTO: 'TOGGLE_FAV_PHOTO',
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+  CLOSE_MODAL: 'CLOSE_MODAL'
+};
 
-// === TOGGLE FAVOURITE=====
-/* const toggleFavourite = (photoId) => {
+// INITIAL STATE
+const initialState = {
+  favourites: [],
+  selectedPhoto: null,
+  isModalOpen: false,
+  photos: [],
+  topics: []
+};
+
+// ===HELPER FUNCTION ======
+const updateFavourites = (favourites, photoId) => {
   if (favourites.includes(photoId)) {
     console.log('Favourite removed!');
-    const currentFavourites = favourites.filter(id => id !== photoId);
-    setFavourites(currentFavourites);
+    return favourites.filter(id => id !== photoId);
   } else {
-    const newFavourites = [...favourites, photoId];
-    setFavourites(newFavourites);
     console.log("Favourite ID added");
+    return [...favourites, photoId];
   }
-}; */
+};
 
-const toggleFavourite = (favourites, photoId) => {
+//=== toggle Favourite Icon
+/* const toggleFavourite = (favourites, photoId) => {
   let updatedFavourites;
-  if (favourites.includes(photoId)) {
+  if (favourites.includes(photoId)) {ß
     console.log('Favourite removed!');
     updatedFavourites = favourites.filter(id => id !== photoId);
   } else {
@@ -29,9 +40,10 @@ const toggleFavourite = (favourites, photoId) => {
   }
   setFavourites(updatedFavourites);
   return updatedFavourites;
-};
+}; */
 
-const handlePhotoClick = (photo) => {
+//==== handle the Fav icon clicks
+/* const handlePhotoClick = (photo) => {
   setSinglePhotoDetail(photo);
   setIsModalOpen(true);
 };
@@ -39,35 +51,19 @@ const handlePhotoClick = (photo) => {
 const closeModal = () => {
   setSinglePhotoDetail(null);
   setIsModalOpen(false);
-};
+}; */
 
-return {favourites,
-  singlePhotoDetail,
-isModalOpen,
-  toggleFavourite,
-  handlePhotoClick,
-      closeModal,
-  };
-
-}
-
-export const ACTIONS = {
-  FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
-  FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
-  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
-  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
-  SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
-  CLOSE_MODAL: 'CLOSE_MODAL',
-  SET_SELECTED_PHOTO: 'SET_SELECTED_PHOTO'
-};
-
+//===== REDUCER FUNCTION =====
 function reducer(state, action) {
-  let updatedFavourites;
-
   switch (action.type) {
+    case ACTIONS.TOGGLE_FAV_PHOTO:
+      return {
+        ...state,
+        favourites: updateFavourites(state.favourites, action.photoId)
+      };
 
-    case ACTIONS.FAV_PHOTO_ADDED:
+
+    /* case ACTIONS.FAV_PHOTO_ADDED:
       updatedFavourites = toggleFavourite(state.favourites, action.photoId);
       return {
         ...state,
@@ -79,7 +75,7 @@ function reducer(state, action) {
       return {
         ...state,
         favourites: updatedFavourites
-      };
+      }; */
 
     case ACTIONS.SET_PHOTO_DATA:
       return {
@@ -106,12 +102,12 @@ function reducer(state, action) {
         isModalOpen: true
       };
 
-    case ACTIONS.SET_SELECTED_PHOTO:
+    /* case ACTIONS.SET_SELECTED_PHOTO:
       return {
         ...state,
         selectedPhoto: action.photo,
         isModalOpen: true
-      };
+      }; */
 
     case ACTIONS.CLOSE_MODAL:
       return {
@@ -127,6 +123,50 @@ function reducer(state, action) {
   }
 }
 
+  
+// === TOGGLE FAVOURITE=====
+/* const toggleFavourite = (photoId) => {
+  if (favourites.includes(photoId)) {
+    console.log('Favourite removed!');
+    const currentFavourites = favourites.filter(id => id !== photoId);
+    setFavourites(currentFavourites);
+  } else {
+    const newFavourites = [...favourites, photoId];
+    setFavourites(newFavourites);
+    console.log("Favourite ID added");
+  }
+}; */
+
+//==== CUSTOM HOOK FUNCTION ====
+const useApplicationData = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const toggleFavourite = (photoId) => {
+    dispatch({ type: ACTIONS.TOGGLE_FAV_PHOTO, photoId });
+    console.log("favourites")
+
+    };
+  
+
+  const handlePhotoClick = (photo) => {
+    dispatch({
+      type: ACTIONS.DISPLAY_PHOTO_DETAILS,
+      photo
+    });
+  };
+
+  const closeModal = () => {
+    dispatch({
+      type: ACTIONS.CLOSE_MODAL
+    });
+  };
+
+   return {
+      state,
+      toggleFavourite,
+      handlePhotoClick,
+      closeModal
+    }; 
+  }
 
 export default useApplicationData;
-

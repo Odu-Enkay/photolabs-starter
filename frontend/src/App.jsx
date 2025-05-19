@@ -4,13 +4,21 @@ import topics from './mocks/topics';
 import { useState } from 'react';
 import PhotoDetailModal from './components/PhotoDetailModal';
 import HomeRoute from './components/HomeRoute';
+import useApplicationData from './hooks/useApplicationData';
 
 const App = () => {
-  const [favourites, setFavourites] = useState([]);
+  const  {favourites,
+    singlePhotoDetail,
+    isModalOpen,
+    toggleFavourite,
+    handlePhotoClick,
+        closeModal} =useApplicationData();
+  
+ /*  const [favourites, setFavourites] = useState([]);
   const [singlePhotoDetail, setSinglePhotoDetail] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); */
 
-  const toggleFavourite = (photoId) => {
+  /* const toggleFavourite = (photoId) => {
     if (favourites.includes(photoId)) {
       console.log('Favourite removed!');
       const currentFavourites = favourites.filter(id => id !== photoId);
@@ -20,9 +28,10 @@ const App = () => {
       setFavourites(newFavourites);
       console.log("Favourite ID added");
     }
-  };
+  }; */
 
-  const handlePhotoClick = (photo) => {
+  
+  /* const handlePhotoClick = (photo) => {
     setSinglePhotoDetail(photo);
     setIsModalOpen(true);
   };
@@ -31,7 +40,7 @@ const App = () => {
     setSinglePhotoDetail(null);
     setIsModalOpen(false);
   };
-
+ */
   return (
     <div className="App">
       <HomeRoute

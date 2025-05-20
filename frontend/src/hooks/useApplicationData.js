@@ -17,7 +17,8 @@ const initialState = {
   topicData: []
 };
 
-// ===HELPER FUNCTION  Update favourites ======
+// ===HELPER FUNCTION  ======
+//======= Update favourites =====
 const updateFavourites = (favourites, photoId) => {
   if (favourites.includes(photoId)) {
     console.log('Favourite removed!');
@@ -27,6 +28,11 @@ const updateFavourites = (favourites, photoId) => {
     return [...favourites, photoId];
   }
 };
+
+//====Handle onclickphotobyTopic
+
+
+
 
 //===== REDUCER FUNCTION =====
 function reducer(state, action) {
@@ -83,16 +89,42 @@ const useApplicationData = () => {
   //==== FETCH PHOTO DATA FROM API
   useEffect(() => {
     fetch("http://localhost:8001/api/photos")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+      .catch((error) => {
+        console.log('Fetch failed: ', error);
+      });
   }, []);
 
   //==== FETCH TOPIC DATA FROM API
   useEffect(() => {
     fetch("http://localhost:8001/api/topics")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+      .catch((error) => {
+        console.log('Fetch failed: ', error);
+      });
   }, []);
+
+  //====FETCH PHOTOS BY TOPIC
+  const fetchPhotosByTopic = (topicId) => {
+    fetch(`http://localhost:8001/api/topics/${topicId}/photos`)
+      .then((res) => res.json())
+      .then((data) =>
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })
+      )
+      .catch((err) => console.error("Error fetching photos by topic:", err));
+  };
 
 
   // === toggle favourite ===
@@ -119,7 +151,8 @@ const useApplicationData = () => {
       state,
       toggleFavourite,
       handlePhotoClick,
-      closeModal
+      closeModal,
+      fetchPhotosByTopic
     }; 
   }
 

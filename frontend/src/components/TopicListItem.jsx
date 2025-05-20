@@ -1,19 +1,10 @@
 import "../styles/TopicListItem.scss";
-import TopicList from "./TopicList";
-import topics from "../mocks/topics";
-
-
-/* const sampleDataForTopicListItem = {
-  id: 1,
-  slug: "topic-1",
-  label: "Nature",
-}; */
 
 const TopicListItem = (props) => {
-  const { title } = props.topic; // Correctly destructuring 'title'
+  const { title } = props.topic;
 
   return (
-    <div className="topic-list__item">
+    <div className="topic-list__item" onClick={props.onClick}>
       <span className="top-nav-bar__topic-list-item">
         {title}
       </span>

@@ -1,11 +1,11 @@
 import { useReducer, useEffect } from "react";
 
 export const ACTIONS = {
-  TOGGLE_FAV_PHOTO: 'TOGGLE_FAV_PHOTO',
-  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
-  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
-  CLOSE_MODAL: 'CLOSE_MODAL'
+  TOGGLE_FAV_PHOTO: "TOGGLE_FAV_PHOTO",
+  SET_PHOTO_DATA: "SET_PHOTO_DATA",
+  SET_TOPIC_DATA: "SET_TOPIC_DATA",
+  DISPLAY_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS",
+  CLOSE_MODAL: "CLOSE_MODAL",
 };
 
 // INITIAL STATE
@@ -14,25 +14,18 @@ const initialState = {
   selectedPhoto: null,
   isModalOpen: false,
   photoData: [],
-  topicData: []
+  topicData: [],
 };
 
 // ===HELPER FUNCTION  ======
 //======= Update favourites =====
 const updateFavourites = (favourites, photoId) => {
   if (favourites.includes(photoId)) {
-    console.log('Favourite removed!');
-    return favourites.filter(id => id !== photoId);
+    return favourites.filter((id) => id !== photoId);
   } else {
-    console.log("Favourite ID added");
     return [...favourites, photoId];
   }
 };
-
-//====Handle onclickphotobyTopic
-
-
-
 
 //===== REDUCER FUNCTION =====
 function reducer(state, action) {
@@ -40,39 +33,39 @@ function reducer(state, action) {
     case ACTIONS.TOGGLE_FAV_PHOTO:
       return {
         ...state,
-        favourites: updateFavourites(state.favourites, action.photoId)
+        favourites: updateFavourites(state.favourites, action.photoId),
       };
 
     case ACTIONS.SET_PHOTO_DATA:
       return {
         ...state,
-        photoData: action.payload
+        photoData: action.payload,
       };
 
     case ACTIONS.SET_TOPIC_DATA:
       return {
         ...state,
-        topicData: action.payload
+        topicData: action.payload,
       };
 
     case ACTIONS.SELECT_PHOTO:
       return {
         ...state,
-        selectedPhoto: action.photo
+        selectedPhoto: action.photo,
       };
 
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       return {
         ...state,
         selectedPhoto: action.photo,
-        isModalOpen: true
+        isModalOpen: true,
       };
 
     case ACTIONS.CLOSE_MODAL:
       return {
         ...state,
         selectedPhoto: null,
-        isModalOpen: false
+        isModalOpen: false,
       };
 
     default:
@@ -85,8 +78,8 @@ function reducer(state, action) {
 //==== CUSTOM HOOK FUNCTION ====
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  
-  //==== FETCH PHOTO DATA FROM API
+
+  //==== FETCH ALL PHOTO DATA FROM API
   useEffect(() => {
     fetch("http://localhost:8001/api/photos")
       .then((response) => {
@@ -97,11 +90,11 @@ const useApplicationData = () => {
       })
       .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
       .catch((error) => {
-        console.log('Fetch failed: ', error);
+        console.log("Fetch failed: ", error);
       });
   }, []);
 
-  //==== FETCH TOPIC DATA FROM API
+  //==== FETCH ALL TOPIC DATA FROM API
   useEffect(() => {
     fetch("http://localhost:8001/api/topics")
       .then((response) => {
@@ -112,7 +105,7 @@ const useApplicationData = () => {
       })
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
       .catch((error) => {
-        console.log('Fetch failed: ', error);
+        console.log("Fetch failed: ", error);
       });
   }, []);
 
@@ -120,40 +113,36 @@ const useApplicationData = () => {
   const fetchPhotosByTopic = (topicId) => {
     fetch(`http://localhost:8001/api/topics/${topicId}/photos`)
       .then((res) => res.json())
-      .then((data) =>
-        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })
-      )
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
       .catch((err) => console.error("Error fetching photos by topic:", err));
   };
-
 
   // === toggle favourite ===
   const toggleFavourite = (photoId) => {
     dispatch({ type: ACTIONS.TOGGLE_FAV_PHOTO, photoId });
-    console.log("favourites")
-    };
-  
-//==== Handle photoclick
+  };
+
+  //==== Handle photoclick
   const handlePhotoClick = (photo) => {
     dispatch({
       type: ACTIONS.DISPLAY_PHOTO_DETAILS,
-      photo
+      photo,
     });
   };
 
   const closeModal = () => {
     dispatch({
-      type: ACTIONS.CLOSE_MODAL
+      type: ACTIONS.CLOSE_MODAL,
     });
   };
 
-   return {
-      state,
-      toggleFavourite,
-      handlePhotoClick,
-      closeModal,
-      fetchPhotosByTopic
-    }; 
-  }
+  return {
+    state,
+    toggleFavourite,
+    handlePhotoClick,
+    closeModal,
+    fetchPhotosByTopic,
+  };
+};
 
 export default useApplicationData;

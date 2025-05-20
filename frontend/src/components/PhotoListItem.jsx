@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import "../styles/PhotoListItem.scss";
-import PhotoFavButton from './PhotoFavButton';
+import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   const { id, location, urls, user } = props.photo;

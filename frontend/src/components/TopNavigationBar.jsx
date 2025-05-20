@@ -1,17 +1,16 @@
-import '../styles/TopNavigationBar.scss'
-import FavBadge from './FavBadge';
-import TopicList from './TopicList';
-
+import "../styles/TopNavigationBar.scss";
+import FavBadge from "./FavBadge";
+import TopicList from "./TopicList";
 
 const TopNavigation = (props) => {
-  const isFavPhotoExist = props.favourites.length > 0 
+  const isFavPhotoExist = props.favourites.length > 0;
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
       <TopicList topics={props.topics} onTopicClick={props.onTopicClick} />
       <FavBadge isFavPhotoExist={isFavPhotoExist} />
-    </div> 
-  )
+    </div>
+  );
 };
 
 export default TopNavigation;

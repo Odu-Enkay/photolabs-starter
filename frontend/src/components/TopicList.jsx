@@ -1,27 +1,18 @@
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
 
-/* const TopicList = (props) => {
+const TopicList = ({ topics, onTopicClick }) => {
   return (
     <div className="top-nav-bar__topic-list">
-      {props.topics.map((topic) => <TopicListItem key={topic.id} topic={topic} />)}
+      {topics.map((topic) => (
+        <TopicListItem
+          key={topic.id}
+          topic={topic}
+          onClick={() => onTopicClick(topic.id)}
+        />
+      ))}
     </div>
   );
-} */
-
-  const TopicList = ({ topics, onTopicClick }) => {
-    return (
-      <div className="top-nav-bar__topic-list">
-        {topics.map((topic) => (
-          <TopicListItem
-            key={topic.id}
-            topic={topic}
-            onClick={() => onTopicClick(topic.id)}
-          />
-        ))}
-      </div>
-    );
-
-  };
+};
 
 export default TopicList;

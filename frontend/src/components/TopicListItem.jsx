@@ -5,9 +5,7 @@ const TopicListItem = (props) => {
 
   return (
     <div className="topic-list__item" onClick={props.onClick}>
-      <span className="top-nav-bar__topic-list-item">
-        {title}
-      </span>
+      <span className="top-nav-bar__topic-list-item">{title}</span>
     </div>
   );
 };

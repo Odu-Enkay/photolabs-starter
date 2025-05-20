@@ -17,11 +17,10 @@ const PhotoDetailModal = ({
 
   const { id, urls, user, location } = singlePhotoDetail;
 
-  // Find similar photos based on location 
+  // Find similar photos by location
   const similarPhotos = photos.filter(
     (photo) =>
-      photo.id !== singlePhotoDetail.id &&
-      photo.location.city === location.city
+      photo.id !== singlePhotoDetail.id && photo.location.city === location.city
   );
 
   return (
@@ -35,7 +34,10 @@ const PhotoDetailModal = ({
 
       {/* Selected photo with FavButton */}
       <div className="photo-details-modal__images">
-        <div className="photo-details-modal__image-container" style={{ position: "relative" }}>
+        <div
+          className="photo-details-modal__image"
+          style={{ position: "relative" }}
+        >
           <PhotoFavButton
             photoId={id}
             favourites={favourites}

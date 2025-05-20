@@ -1,16 +1,16 @@
 import "./App.scss";
-import { useState } from "react";
 import PhotoDetailModal from "./components/PhotoDetailModal";
 import HomeRoute from "./components/HomeRoute";
 import useApplicationData from "./hooks/useApplicationData";
 
 const App = () => {
   const {
-    state, 
-    toggleFavourite, 
-    handlePhotoClick, 
-    closeModal, 
-    fetchPhotosByTopic } = useApplicationData();
+    state,
+    toggleFavourite,
+    handlePhotoClick,
+    closeModal,
+    fetchPhotosByTopic,
+  } = useApplicationData();
 
   return (
     <div className="App">
@@ -18,7 +18,7 @@ const App = () => {
         photos={state.photoData}
         topics={state.topicData}
         onPhotoClick={handlePhotoClick}
-        onTopicClick = {fetchPhotosByTopic}
+        onTopicClick={fetchPhotosByTopic}
         favourites={state.favourites}
         toggleFavourite={toggleFavourite}
       />

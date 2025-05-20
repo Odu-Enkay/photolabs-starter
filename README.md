@@ -29,13 +29,13 @@ Photolab is a fullstack single web app photo gallery, featuring topic-based phot
 
 ## Sample output of the Photolab App
 ###### Showing all images fecthed from the API
-!['Showing all images fecthed from the API'](https://github.com/Odu-Enkay/photolabs-starter/blob/main/docs/All_Photolist.png?raw=true)
+!["Showing all images fecthed from the API"](https://github.com/Odu-Enkay/photolabs-starter/blob/main/docs/All_Photolist.png?raw=true)
 
 ##### Favourited modal photo with similar photos
-!['Favourited modal photo with similar photos'](https://github.com/Odu-Enkay/photolabs-starter/blob/main/docs/Favoutited_image_modal.png?raw=true)
+!["Favourited modal photo with similar photos"](https://github.com/Odu-Enkay/photolabs-starter/blob/main/docs/Favoutited_image_modal.png?raw=true)
 
 ###### Showing all images fecthed from the API
-!['Showing all Images Selected by Topic](https://github.com/Odu-Enkay/photolabs-starter/blob/main/docs/select_Photo_byTopic.png?raw=true)
+!["Showing all Images Selected by Topic"](https://github.com/Odu-Enkay/photolabs-starter/blob/main/docs/select_Photo_byTopic.png?raw=true)
 
 ## Work-in-Progress 
 - Add responsiveness to Modal Photos

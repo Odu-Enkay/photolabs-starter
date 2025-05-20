@@ -17,7 +17,7 @@ const PhotoDetailModal = ({
 
   const { id, urls, user, location } = singlePhotoDetail;
 
-  // Find similar photos based on location (excluding the selected photo)
+  // Find similar photos based on location 
   const similarPhotos = photos.filter(
     (photo) =>
       photo.id !== singlePhotoDetail.id &&

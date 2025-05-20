@@ -8,8 +8,6 @@ const PhotoFavButton = (props) => {
 
   function handleClick() {
     props.toggleFavourite(props.photoId);
-    /* setActive(!isActive);
-    console.log(`Favourite button clicked, isActive: ${!isActive}`); */
   }; 
 
   function isActive() {

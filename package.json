@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/Odu-Enkay/photolabs-starter#readme",
   "dependencies": {
-    "axios": "^1.9.0"
+    "axios": "^1.9.0",
+    "react": "^16.14.0"
+  },
+  "devDependencies": {
+    "react-test-renderer": "^16.14.0"
   }
 }

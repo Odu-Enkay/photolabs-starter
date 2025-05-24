@@ -81,7 +81,7 @@ const useApplicationData = () => {
 
   //==== FETCH ALL PHOTO DATA FROM API
   useEffect(() => {
-    fetch("http://localhost:8001/api/photos")
+    fetch("/api/photos")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -96,7 +96,7 @@ const useApplicationData = () => {
 
   //==== FETCH ALL TOPIC DATA FROM API
   useEffect(() => {
-    fetch("http://localhost:8001/api/topics")
+    fetch("/api/topics")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -111,7 +111,7 @@ const useApplicationData = () => {
 
   //====FETCH PHOTOS BY TOPIC
   const fetchPhotosByTopic = (topicId) => {
-    fetch(`http://localhost:8001/api/topics/${topicId}/photos`)
+    fetch(`/api/topics/${topicId}/photos`)
       .then((res) => res.json())
       .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
       .catch((err) => console.error("Error fetching photos by topic:", err));

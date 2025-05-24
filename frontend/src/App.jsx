@@ -1,6 +1,6 @@
 import "./App.scss";
-import PhotoDetailModal from "./components/PhotoDetailModal";
-import HomeRoute from "./components/HomeRoute";
+import PhotoDetailModal from "./routes/PhotoDetailsModal.jsx";
+import HomeRoute from './routes/HomeRoute.jsx'
 import useApplicationData from "./hooks/useApplicationData";
 
 const App = () => {

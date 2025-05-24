@@ -12,6 +12,9 @@ Photolab is a fullstack single web app photo gallery, featuring topic-based phot
 - Allows user to view similar photos by location
 
 ## Setup
+- Backend Setup - Click [here](backend/README.md) to view instructions
+- Frontend Setup - Click [here](frontend/README.md) to view instructions
+
 - Clone to your local machine using:\
 ```git clone git@github.com:Odu-Enkay/photolabs-starter.git```\
 ```cd photolabs-```

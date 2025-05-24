@@ -4,7 +4,6 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   const { id, location, urls, user } = props.photo;
-  console.log("PhotoListItem props:", props);
   const { favourites, toggleFavourite, onPhotoClick } = props;
 
   return (
